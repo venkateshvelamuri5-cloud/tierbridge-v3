@@ -3433,6 +3433,27 @@ function PlaybooksPanel({ branch, isPro, onUpgrade }: { branch: Branch; isPro: b
   )
 }
 
+const Logo = ({ size = 32 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0 }}>
+    <defs>
+      <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#818cf8" />
+        <stop offset="100%" stopColor="#34d399" />
+      </linearGradient>
+      <filter id="glow" x="-25%" y="-25%" width="150%" height="150%">
+        <feGaussianBlur stdDeviation="2" result="blur" />
+        <feComposite in="SourceGraphic" in2="blur" operator="over" />
+      </filter>
+    </defs>
+    {/* Bridge Arch */}
+    <path d="M 4 20 C 10 10, 22 10, 28 20" stroke="url(#logo-grad)" strokeWidth="3.5" strokeLinecap="round" />
+    {/* Intersecting connector nodes */}
+    <circle cx="6" cy="20" r="3" fill="#818cf8" filter="url(#glow)" />
+    <circle cx="26" cy="20" r="3" fill="#34d399" filter="url(#glow)" />
+    <circle cx="16" cy="12" r="3.5" fill="#ffffff" filter="url(#glow)" />
+  </svg>
+)
+
 // ─── MAIN APP ─────────────────────────────────────────────────────────────────
 const NAV: { id: Tab; label: string; badge?: boolean }[] = [
   { id: 'home', label: 'Home' },
@@ -3561,7 +3582,7 @@ function LandingPage({ onLogin, branch, setBranch }: { onLogin: () => void; bran
         onMouseLeave={() => setActiveMenu(null)}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
-          <div style={{ width: 34, height: 34, background: S.brand, borderRadius: 8, display: 'grid', placeItems: 'center', color: '#fff', fontWeight: 800, fontSize: 14 }}>TB</div>
+          <Logo size={32} />
           <span style={{ fontSize: 17, fontWeight: 800, letterSpacing: '-.4px', color: S.t1 }}>TierBridge</span>
         </div>
         
@@ -5063,7 +5084,7 @@ export default function TierBridge() {
           {/* Nav */}
           <nav style={{ height: 56, background: 'rgba(10,11,15,.75)', backdropFilter: 'blur(20px)', borderBottom: `1px solid ${S.b1}`, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 22px', flexShrink: 0, position: 'relative', zIndex: 20 }}>
             <div onClick={() => setTab('home')} style={{ display: 'flex', alignItems: 'center', gap: 9, cursor: 'pointer' }}>
-              <div style={{ width: 30, height: 30, background: S.brand, borderRadius: 8, display: 'grid', placeItems: 'center', color: '#fff', fontWeight: 800, fontSize: 12, flexShrink: 0 }}>TB</div>
+              <Logo size={28} />
               <span style={{ fontSize: 15, fontWeight: 700, color: S.t1, letterSpacing: '-.3px' }}>TierBridge</span>
             </div>
 
